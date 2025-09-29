@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Compass - Find Your Perfect Career Path</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            /* Primary Colors */
+            --color-navy-blue: #1E3A8A;
+            --color-dark-blue: #0F172A;
+
+            /* Secondary (Greens for Growth) */
+            --color-dark-green: #059669;
+            --color-emerald-green: #10B981;
+            --color-teal-accent: #14B8A6;
+
+            /* Accent Colors */
+            --color-golden-yellow: #FBBF24;
+            --color-amber-hover: #F59E0B;
+
+            /* Neutral / Background */
+            --color-soft-white: #F9FAFB;
+            --color-medium-gray: #9CA3AF;
+            --color-cool-gray: #6B7280;
+            --color-light-gray: #a0aec0;
+        }
+
+        body {
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: white;
+            color: var(--color-dark-blue);
+            line-height: 1.6;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+/* 1. STYLING FOR THE GREEN, ROUNDED BACKGROUND (The Wrapper) */
+.logo-wrapper {
+    /* Keep the size you liked */
+    width: 55px; 
+    height: 55px;
+    
+    /* ---- CHANGE HERE: Apply your desired green background color ---- */
+    background-color: #059669; /* Your desired green */
+    
+    /* Rounded Shape (adjust for perfect circle or soft square) */
+    border-radius: 12px; /* For a soft square, or use 50% for a perfect circle */
+    
+    /* Center the icon inside the wrapper */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* General alignment */
+    vertical-align: middle; 
+    
+    /* ---- CHANGE HERE: Increase space between logo and text ---- */
+    margin-right: 20px; /* Increased from 15px to 20px for more space */
+}
+
+/* 2. STYLING FOR THE WHITE COMPASS ICON */
+.logo-icon-fa {
+    /* Make the icon white (the compass needle) */
+    color: white; 
+    
+    /* Keep the icon size */
+    font-size: 30px; 
+}
+
+/* Optional: Center the entire heading */
+.container h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, var(--color-navy-blue) 0%, var(--color-dark-blue) 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 0 0 15px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            margin: 0;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 80px 0;
+        }
+
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .welcome-section h2 {
+            font-size: 2.8rem;
+            color: var(--color-navy-blue);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .welcome-section p {
+            font-size: 1.2rem;
+            color: var(--color-cool-gray);
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+        }
+
+        /* Feature Cards */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .feature-card {
+            background: var(--color-soft-white);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--color-emerald-green);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            color: var(--color-navy-blue);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: var(--color-cool-gray);
+            font-size: 1rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-emerald-green) 0%, var(--color-dark-green) 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--color-golden-yellow) 0%, var(--color-amber-hover) 100%);
+            color: var(--color-dark-blue);
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(251, 191, 36, 0.4);
+        }
+
+        .btn-large {
+            padding: 22px 50px;
+            font-size: 1.3rem;
+        }
+
+        /* Assessment Styles */
+        .assessment-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 25px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--color-soft-white);
+        }
+
+        .progress-section {
+            margin-bottom: 40px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .progress-info h3 {
+            color: var(--color-navy-blue);
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        .progress-text {
+            color: var(--color-cool-gray);
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: var(--color-soft-white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-emerald-green) 0%, var(--color-teal-accent) 100%);
+            border-radius: 10px;
+            transition: width 0.6s ease;
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .question-section {
+            margin: 40px 0;
+        }
+
+        .question-title {
+            font-size: 1.6rem;
+            color: var(--color-navy-blue);
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .options-grid {
+            display: grid;
+            gap: 15px;
+        }
+
+        .option-card {
+            background: var(--color-soft-white);
+            border: 2px solid transparent;
+            border-radius: 15px;
+            padding: 20px 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .option-card:hover {
+            border-color: var(--color-emerald-green);
+            background: white;
+            transform: translateX(5px);
+        }
+
+        .option-card.selected {
+            border-color: var(--color-emerald-green);
+            background: white;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.15);
+        }
+
+        .option-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--color-emerald-green);
+            border-radius: 0 4px 4px 0;
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .option-card.selected::before {
+            transform: scaleY(1);
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* Results Styles */
+        .results-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .results-header h2 {
+            font-size: 2.5rem;
+            color: var(--color-navy-blue);
+            margin-bottom: 15px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .career-card {
+            background: linear-gradient(135deg, var(--color-navy-blue) 0%, var(--color-dark-blue) 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .career-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .career-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+
+        .career-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .career-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .match-badge {
+            background: var(--color-golden-yellow);
+            color: var(--color-dark-blue);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .career-description {
+            margin: 20px 0;
+            opacity: 0.9;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+
+        .career-skills {
+            margin: 20px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .skill-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .roadmap-btn {
+            width: 100%;
+            margin-top: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--color-soft-white);
+            padding: 60px 0;
+            margin: 80px 0;
+            border-radius: 30px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-emerald-green);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--color-cool-gray);
+            font-weight: 500;
+        }
+
+        /* Roadmap Page Styles */
+        .roadmap-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .roadmap-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px;
+            background: linear-gradient(135deg, var(--color-navy-blue) 0%, var(--color-dark-blue) 100%);
+            color: white;
+            border-radius: 20px;
+        }
+
+        .roadmap-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .roadmap-timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .roadmap-timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--color-emerald-green), var(--color-teal-accent));
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 80px;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 18px;
+            top: 20px;
+            width: 24px;
+            height: 24px;
+            background: var(--color-emerald-green);
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px var(--color-emerald-green);
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--color-emerald-green);
+        }
+
+        .timeline-phase {
+            color: var(--color-emerald-green);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .timeline-title {
+            color: var(--color-navy-blue);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .timeline-tasks {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .timeline-tasks li {
+            padding: 8px 0;
+            color: var(--color-cool-gray);
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .timeline-tasks li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--color-emerald-green);
+            font-weight: bold;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .header p {
+                font-size: 1.1rem;
+            }
+            
+            .assessment-container {
+                padding: 30px 20px;
+            }
+            
+            .features-grid,
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .roadmap-timeline::before {
+                left: 15px;
+            }
+            
+            .timeline-item {
+                padding-left: 50px;
+            }
+            
+            .timeline-marker {
+                left: 3px;
+            }
+        }
+
+        /* Hidden class for page transitions */
+        .hidden {
+            display: none;
+        }
+
+        /* Loading animation */
+        .loading {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--color-soft-white);
+            border-top: 4px solid var(--color-emerald-green);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Welcome Page -->
+    <div id="welcomePage">
+        <header class="header">
+            <div class="container">
+                <h1>
+                    <span class="logo-wrapper">
+            <i class="fa-regular fa-compass logo-icon-fa"></i>
+        </span>
+        
+        Career Explorer
+                </h1>
+                <p>Navigate Your Path to Professional Success</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="container">
+                <section class="welcome-section">
+                    <h2>Discover Your Perfect Career Match</h2>
+                    <p>Take our comprehensive career assessment to uncover careers that align with your interests, skills, and personality. Get personalized recommendations and detailed roadmaps to achieve your professional goals.</p>
+                    
+                    <button class="btn btn-primary btn-large" onclick="startAssessment()">
+                        Start Career Assessment
+                    </button>
+                </section>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">📊</span>
+                        <h3>Comprehensive Assessment</h3>
+                        <p>10 carefully designed questions analyzing your interests, skills, work preferences, and personality traits.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🎯</span>
+                        <h3>Personalized Matches</h3>
+                        <p>Get matched with careers based on your unique profile with detailed compatibility scores.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🗺️</span>
+                        <h3>Detailed Roadmaps</h3>
+                        <p>Step-by-step career roadmaps with timelines, skills to develop, and actionable next steps.</p>
+                    </div>
+                </div>
+
+                <section class="stats-section">
+                    <div class="container">
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-number">50K+</div>
+                                <div class="stat-label">Careers Discovered</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">95%</div>
+                                <div class="stat-label">Accuracy Rate</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">12</div>
+                                <div class="stat-label">Career Paths</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">4.9★</div>
+                                <div class="stat-label">User Rating</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Assessment Page -->
+    <div id="assessmentPage" class="hidden">
+        <header class="header">
+            <div class="container">
+                <h1>Career Assessment</h1>
+                <p>Answer honestly for the most accurate results</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="container">
+                <div class="assessment-container">
+                    <div class="progress-section">
+                        <div class="progress-info">
+                            <h3>Question <span id="currentQuestionNum">1</span> of <span id="totalQuestions">10</span></h3>
+                            <span class="progress-text"><span id="progressPercent">10</span>% Complete</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill" style="width: 10%"></div>
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <h2 class="question-title" id="questionText">Loading question...</h2>
+                        <div class="options-grid" id="optionsContainer">
+                            <!-- Options will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="navigation">
+                        <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()" disabled>
+                            Previous
+                        </button>
+                        <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>
+                            Next Question
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Results Page -->
+    <div id="resultsPage" class="hidden">
+        <header class="header">
+            <div class="container">
+                <h1>🎉 Your Career Results</h1>
+                <p>Based on your assessment responses</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="container">
+                <div class="results-header">
+                    <h2>Your Top Career Matches</h2>
+                    <p>Here are the careers that best align with your interests, skills, and preferences:</p>
+                </div>
+
+                <div class="results-grid" id="resultsContainer">
+                    <!-- Results will be populated by JavaScript -->
+                </div>
+
+                <div style="text-align: center; margin-top: 50px;">
+                    <button class="btn btn-secondary" onclick="restartAssessment()">
+                        Take Assessment Again
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Roadmap Page -->
+    <div id="roadmapPage" class="hidden">
+        <div class="roadmap-container">
+            <div class="roadmap-header">
+                <h1 id="roadmapTitle">Career Roadmap</h1>
+                <p id="roadmapDescription">Your step-by-step guide to success</p>
+                <button class="btn btn-secondary" onclick="backToResults()">
+                    ← Back to Results
+                </button>
+            </div>
+
+            <div class="roadmap-timeline" id="roadmapTimeline">
+                <!-- Timeline will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Assessment Questions
+        const questions = [
+            {
+                question: "What type of work environment energizes you most?",
+                options: [
+                    { text: "Collaborative office with team projects", scores: { tech: 2, business: 3, creative: 2, healthcare: 2, education: 3, finance: 2 } },
+                    { text: "Remote work with flexible schedule", scores: { tech: 3, business: 2, creative: 3, healthcare: 1, education: 2, finance: 2 } },
+                    { text: "Hands-on, practical workspace", scores: { tech: 1, business: 1, creative: 2, healthcare: 3, education: 2, finance: 1 } },
+                    { text: "Dynamic, fast-paced environment", scores: { tech: 2, business: 3, creative: 2, healthcare: 2, education: 1, finance: 3 } }
+                ]
+            },
+            {
+                question: "Which activity sounds most appealing to you?",
+                options: [
+                    { text: "Solving complex technical problems", scores: { tech: 3, business: 1, creative: 1, healthcare: 1, education: 1, finance: 2 } },
+                    { text: "Leading and managing teams", scores: { tech: 1, business: 3, creative: 1, healthcare: 2, education: 2, finance: 3 } },
+                    { text: "Creating and designing new things", scores: { tech: 2, business: 1, creative: 3, healthcare: 1, education: 2, finance: 1 } },
+                    { text: "Helping and caring for others", scores: { tech: 1, business: 1, creative: 1, healthcare: 3, education: 3, finance: 1 } }
+                ]
+            },
+            {
+                question: "What motivates you most in your work?",
+                options: [
+                    { text: "Innovation and cutting-edge technology", scores: { tech: 3, business: 2, creative: 2, healthcare: 1, education: 1, finance: 2 } },
+                    { text: "Financial success and growth", scores: { tech: 1, business: 3, creative: 1, healthcare: 1, education: 1, finance: 3 } },
+                    { text: "Artistic expression and creativity", scores: { tech: 1, business: 1, creative: 3, healthcare: 1, education: 2, finance: 1 } },
+                    { text: "Making a positive impact on lives", scores: { tech: 1, business: 1, creative: 1, healthcare: 3, education: 3, finance: 1 } }
+                ]
+            },
+            {
+                question: "How do you prefer to communicate?",
+                options: [
+                    { text: "Through code, data, and technical docs", scores: { tech: 3, business: 1, creative: 1, healthcare: 1, education: 1, finance: 2 } },
+                    { text: "Presentations and negotiations", scores: { tech: 1, business: 3, creative: 1, healthcare: 2, education: 2, finance: 3 } },
+                    { text: "Visual designs and creative media", scores: { tech: 1, business: 1, creative: 3, healthcare: 1, education: 2, finance: 1 } },
+                    { text: "One-on-one empathetic conversations", scores: { tech: 1, business: 2, creative: 1, healthcare: 3, education: 3, finance: 1 } }
+                ]
+            },
+            {
+                question: "What's your ideal work schedule?",
+                options: [
+                    { text: "Flexible hours, focus on deliverables", scores: { tech: 3, business: 2, creative: 3, healthcare: 1, education: 2, finance: 2 } },
+                    { text: "Standard business hours with networking", scores: { tech: 1, business: 3, creative: 1, healthcare: 1, education: 2, finance: 3 } },
+                    { text: "Project-based with creative bursts", scores: { tech: 2, business: 1, creative: 3, healthcare: 1, education: 2, finance: 1 } },
+                    { text: "Structured schedule serving others", scores: { tech: 1, business: 1, creative: 1, healthcare: 3, education: 3, finance: 1 } }
+                ]
+            },
+            {
+                question: "Which skill set interests you most?",
+                options: [
+                    { text: "Programming and software development", scores: { tech: 3, business: 1, creative: 2, healthcare: 1, education: 1, finance: 1 } },
+                    { text: "Strategic planning and analysis", scores: { tech: 1, business: 3, creative: 1, healthcare: 1, education: 2, finance: 3 } },
+                    { text: "Design and artistic creation", scores: { tech: 1, business: 1, creative: 3, healthcare: 1, education: 2, finance: 1 } },
+                    { text: "Patient care and medical knowledge", scores: { tech: 1, business: 1, creative: 1, healthcare: 3, education: 1, finance: 1 } }
+                ]
+            },
+            {
+                question: "What type of problems do you enjoy solving?",
+                options: [
+                    { text: "Technical challenges and bugs", scores: { tech: 3, business: 1, creative: 1, healthcare: 1, education: 1, finance: 2 } },
+                    { text: "Business strategy and optimization", scores: { tech: 1, business: 3, creative: 1, healthcare: 1, education: 2, finance: 3 } },
+                    { text: "Design and user experience issues", scores: { tech: 2, business: 1, creative: 3, healthcare: 1, education: 2, finance: 1 } },
+                    { text: "Health and wellness challenges", scores: { tech: 1, business: 1, creative: 1, healthcare: 3, education: 2, finance: 1 } }
+                ]
+            },
+            {
+                question: "How do you handle stress and pressure?",
+                options: [
+                    { text: "Break down problems systematically", scores: { tech: 3, business: 2, creative: 1, healthcare: 2, education: 2, finance: 2 } },
+                    { text: "Focus on strategic solutions", scores: { tech: 1, business: 3, creative: 1, healthcare: 1, education: 2, finance: 3 } },
+                    { text: "Channel it into creative energy", scores: { tech: 1, business: 1, creative: 3, healthcare: 1, education: 2, finance: 1 } },
+                    { text: "Stay calm and support others", scores: { tech: 1, business: 2, creative: 1, healthcare: 3, education: 3, finance: 1 } }
+                ]
+            },
+            {
+                question: "What type of learning do you prefer?",
+                options: [
+                    { text: "Hands-on coding and experimentation", scores: { tech: 3, business: 1, creative: 2, healthcare: 1, education: 2, finance: 1 } },
+                    { text: "Case studies and business analysis", scores: { tech: 1, business: 3, creative: 1, healthcare: 1, education: 2, finance: 3 } },
+                    { text: "Visual and creative exploration", scores: { tech: 1, business: 1, creative: 3, healthcare: 1, education: 2, finance: 1 } },
+                    { text: "Clinical practice and patient interaction", scores: { tech: 1, business: 1, creative: 1, healthcare: 3, education: 2, finance: 1 } }
+                ]
+            },
+            {
+                question: "What's most important to you in a career?",
+                options: [
+                    { text: "Continuous learning and innovation", scores: { tech: 3, business: 2, creative: 2, healthcare: 2, education: 3, finance: 2 } },
+                    { text: "Leadership opportunities and growth", scores: { tech: 1, business: 3, creative: 1, healthcare: 2, education: 2, finance: 3 } },
+                    { text: "Creative freedom and expression", scores: { tech: 2, business: 1, creative: 3, healthcare: 1, education: 2, finance: 1 } },
+                    { text: "Making a meaningful difference", scores: { tech: 1, business: 1, creative: 2, healthcare: 3, education: 3, finance: 1 } }
+                ]
+            }
+        ];
+
+        // Career Data
+        const careers = {
+            tech: {
+                title: "💻 Software Developer",
+                description: "Build innovative applications, websites, and software solutions that solve real-world problems and shape the digital future.",
+                skills: ["Programming", "Problem Solving", "Logic", "Creativity"],
+                roadmap: [
+                    {
+                        phase: "Foundation Building",
+                        duration: "0-6 months",
+                        title: "Learn Programming Fundamentals",
+                        tasks: [
+                            "Choose a programming language (Python, JavaScript, or Java)",
+                            "Complete online coding bootcamp or structured course",
+                            "Build 5-10 small projects to practice concepts",
+                            "Create a GitHub account and start version control",
+                            "Join coding communities and forums for support"
+                        ]
+                    },
+                    {
+                        phase: "Skill Development",
+                        duration: "6-12 months",
+                        title: "Master Core Technologies",
+                        tasks: [
+                            "Learn web development (HTML, CSS, JavaScript)",
+                            "Master a popular framework (React, Angular, or Vue)",
+                            "Understand database fundamentals (SQL, MongoDB)",
+                            "Practice data structures and algorithms daily",
+                            "Contribute to open source projects"
+                        ]
+                    },
+                    {
+                        phase: "Portfolio Creation",
+                        duration: "12-18 months",
+                        title: "Build Professional Portfolio",
+                        tasks: [
+                            "Create 3-5 comprehensive full-stack projects",
+                            "Deploy applications using cloud services (AWS, Heroku)",
+                            "Build a professional portfolio website",
+                            "Write technical blog posts about your learning journey",
+                            "Network with developers on LinkedIn and Twitter"
+                        ]
+                    },
+                    {
+                        phase: "Job Preparation",
+                        duration: "18-24 months",
+                        title: "Prepare for Employment",
+                        tasks: [
+                            "Practice technical interviews and coding challenges",
+                            "Apply for junior developer positions and internships",
+                            "Attend tech meetups and networking events",
+                            "Consider freelance projects for experience",
+                            "Continuously update skills with latest technologies"
+                        ]
+                    }
+                ]
+            },
+            business: {
+                title: "📊 Business Analyst",
+                description: "Bridge the gap between business needs and technology solutions by analyzing processes, identifying opportunities, and driving strategic decisions.",
+                skills: ["Analysis", "Communication", "Strategy", "Problem Solving"],
+                roadmap: [
+                    {
+                        phase: "Foundation Knowledge",
+                        duration: "0-6 months",
+                        title: "Business Analysis Fundamentals",
+                        tasks: [
+                            "Learn business analysis principles and methodologies",
+                            "Master Microsoft Excel for data analysis and modeling",
+                            "Study business process mapping and documentation",
+                            "Complete business analysis certification (CBAP or similar)",
+                            "Understand basic project management concepts"
+                        ]
+                    },
+                    {
+                        phase: "Technical Skills",
+                        duration: "6-12 months",
+                        title: "Develop Analytical Capabilities",
+                        tasks: [
+                            "Learn SQL for database querying and analysis",
+                            "Master business intelligence tools (Tableau, Power BI)",
+                            "Study statistical analysis and data interpretation",
+                            "Practice requirements gathering and documentation",
+                            "Learn agile and waterfall project methodologies"
+                        ]
+                    },
+                    {
+                        phase: "Practical Experience",
+                        duration: "12-18 months",
+                        title: "Build Real-World Portfolio",
+                        tasks: [
+                            "Complete case study projects analyzing business problems",
+                            "Volunteer for non-profit organizations to gain experience",
+                            "Create process improvement recommendations",
+                            "Build stakeholder management and presentation skills",
+                            "Network with business professionals and join BA communities"
+                        ]
+                    },
+                    {
+                        phase: "Career Launch",
+                        duration: "18-24 months",
+                        title: "Secure Business Analyst Role",
+                        tasks: [
+                            "Apply for entry-level business analyst positions",
+                            "Prepare for behavioral and technical interviews",
+                            "Showcase analytical projects in portfolio",
+                            "Consider contract or consulting opportunities",
+                            "Pursue advanced certifications and specializations"
+                        ]
+                    }
+                ]
+            },
+            creative: {
+                title: "🎨 UX/UI Designer",
+                description: "Create intuitive, beautiful, and user-centered digital experiences that delight users and solve complex interaction problems.",
+                skills: ["Design", "User Research", "Creativity", "Empathy"],
+                roadmap: [
+                    {
+                        phase: "Design Foundation",
+                        duration: "0-6 months",
+                        title: "Learn Design Principles",
+                        tasks: [
+                            "Study fundamental design principles (color, typography, layout)",
+                            "Master design tools (Figma, Adobe Creative Suite, Sketch)",
+                            "Learn user psychology and cognitive principles",
+                            "Create your first design portfolio with personal projects",
+                            "Study successful app and website designs for inspiration"
+                        ]
+                    },
+                    {
+                        phase: "UX Specialization",
+                        duration: "6-12 months",
+                        title: "Master User Experience Design",
+                        tasks: [
+                            "Learn user research methods (interviews, surveys, usability testing)",
+                            "Practice wireframing and prototyping techniques",
+                            "Study information architecture and user flows",
+                            "Understand accessibility guidelines and inclusive design",
+                            "Complete UX design courses and certifications"
+                        ]
+                    },
+                    {
+                        phase: "Portfolio Development",
+                        duration: "12-18 months",
+                        title: "Build Professional Portfolio",
+                        tasks: [
+                            "Complete 3-5 comprehensive UX/UI case studies",
+                            "Show your design process from research to final design",
+                            "Create responsive designs for web and mobile",
+                            "Collaborate with developers on design implementation",
+                            "Seek feedback from experienced designers and iterate"
+                        ]
+                    },
+                    {
+                        phase: "Industry Entry",
+                        duration: "18-24 months",
+                        title: "Launch Design Career",
+                        tasks: [
+                            "Apply for junior UX/UI designer positions",
+                            "Network with design community through events and online",
+                            "Consider freelance projects to build experience",
+                            "Prepare for design interviews and portfolio presentations",
+                            "Stay updated with design trends and emerging technologies"
+                        ]
+                    }
+                ]
+            },
+            healthcare: {
+                title: "🏥 Healthcare Professional",
+                description: "Provide compassionate medical care, improve patient outcomes, and contribute to the health and wellbeing of your community.",
+                skills: ["Empathy", "Medical Knowledge", "Communication", "Critical Thinking"],
+                roadmap: [
+                    {
+                        phase: "Educational Foundation",
+                        duration: "0-2 years",
+                        title: "Complete Prerequisites",
+                        tasks: [
+                            "Complete required science courses (biology, chemistry, physics)",
+                            "Maintain high GPA (typically 3.5+ for competitive programs)",
+                            "Volunteer at hospitals, clinics, or healthcare facilities",
+                            "Shadow healthcare professionals in your area of interest",
+                            "Prepare for and take required entrance exams (MCAT, GRE, etc.)"
+                        ]
+                    },
+                    {
+                        phase: "Professional Education",
+                        duration: "2-6 years",
+                        title: "Healthcare Program Completion",
+                        tasks: [
+                            "Apply to and complete medical, nursing, or allied health programs",
+                            "Excel in clinical coursework and laboratory sessions",
+                            "Complete required clinical rotations and internships",
+                            "Develop strong patient communication and bedside manner",
+                            "Prepare for licensing examinations (NCLEX, USMLE, etc.)"
+                        ]
+                    },
+                    {
+                        phase: "Clinical Training",
+                        duration: "6-10 years",
+                        title: "Gain Practical Experience",
+                        tasks: [
+                            "Complete residency or specialized training programs",
+                            "Pass all required licensing and board examinations",
+                            "Develop expertise in chosen specialty area",
+                            "Build professional network within healthcare community",
+                            "Participate in continuing education and professional development"
+                        ]
+                    },
+                    {
+                        phase: "Career Advancement",
+                        duration: "10+ years",
+                        title: "Professional Growth",
+                        tasks: [
+                            "Pursue board certifications in specialty areas",
+                            "Consider leadership roles or administrative positions",
+                            "Engage in research or teaching opportunities",
+                            "Mentor new healthcare professionals",
+                            "Stay current with medical advances and best practices"
+                        ]
+                    }
+                ]
+            },
+            education: {
+                title: "📚 Education Professional",
+                description: "Shape the future by educating and inspiring students, developing curriculum, and fostering lifelong learning in others.",
+                skills: ["Teaching", "Patience", "Communication", "Leadership"],
+                roadmap: [
+                    {
+                        phase: "Educational Foundation",
+                        duration: "0-4 years",
+                        title: "Complete Teaching Degree",
+                        tasks: [
+                            "Earn bachelor's degree in subject area or education",
+                            "Complete teacher preparation program",
+                            "Gain classroom experience through student teaching",
+                            "Pass required teaching certification exams",
+                            "Develop classroom management and instructional skills"
+                        ]
+                    },
+                    {
+                        phase: "Certification & Licensing",
+                        duration: "4-5 years",
+                        title: "Obtain Teaching License",
+                        tasks: [
+                            "Apply for teaching license in your state",
+                            "Complete background checks and requirements",
+                            "Search for teaching positions in desired grade level/subject",
+                            "Prepare for job interviews and demo lessons",
+                            "Join professional education organizations"
+                        ]
+                    },
+                    {
+                        phase: "Early Career Development",
+                        duration: "5-10 years",
+                        title: "Build Teaching Excellence",
+                        tasks: [
+                            "Develop effective lesson plans and teaching strategies",
+                            "Build positive relationships with students and parents",
+                            "Participate in professional development workshops",
+                            "Collaborate with colleagues and mentors",
+                            "Pursue master's degree for career advancement"
+                        ]
+                    },
+                    {
+                        phase: "Career Advancement",
+                        duration: "10+ years",
+                        title: "Educational Leadership",
+                        tasks: [
+                            "Consider administrative roles (principal, curriculum coordinator)",
+                            "Pursue advanced degrees (Master's, Ed.D., Ph.D.)",
+                            "Mentor new teachers and student teachers",
+                            "Lead professional development initiatives",
+                            "Contribute to educational research and policy"
+                        ]
+                    }
+                ]
+            },
+            finance: {
+                title: "💰 Financial Analyst",
+                description: "Analyze financial data, assess investment opportunities, and provide strategic recommendations to drive business growth and profitability.",
+                skills: ["Analysis", "Mathematics", "Strategy", "Attention to Detail"],
+                roadmap: [
+                    {
+                        phase: "Educational Foundation",
+                        duration: "0-4 years",
+                        title: "Finance/Business Degree",
+                        tasks: [
+                            "Complete bachelor's degree in finance, economics, or business",
+                            "Excel in mathematics, statistics, and accounting courses",
+                            "Learn financial modeling and analysis techniques",
+                            "Gain proficiency in Excel and financial software",
+                            "Complete internships at financial institutions"
+                        ]
+                    },
+                    {
+                        phase: "Skill Development",
+                        duration: "4-6 years",
+                        title: "Build Technical Expertise",
+                        tasks: [
+                            "Master advanced Excel functions and financial modeling",
+                            "Learn financial analysis software (Bloomberg, FactSet)",
+                            "Study investment principles and portfolio management",
+                            "Understand financial markets and economic indicators",
+                            "Develop presentation and communication skills"
+                        ]
+                    },
+                    {
+                        phase: "Professional Entry",
+                        duration: "6-8 years",
+                        title: "Secure Analyst Position",
+                        tasks: [
+                            "Apply for entry-level financial analyst positions",
+                            "Prepare for technical interviews and case studies",
+                            "Network with finance professionals and alumni",
+                            "Consider pursuing CFA or other relevant certifications",
+                            "Build track record of accurate financial analysis"
+                        ]
+                    },
+                    {
+                        phase: "Career Growth",
+                        duration: "8+ years",
+                        title: "Advance to Senior Roles",
+                        tasks: [
+                            "Pursue senior analyst or associate positions",
+                            "Specialize in specific industries or analysis types",
+                            "Lead financial projects and mentor junior analysts",
+                            "Consider MBA for advancement to management roles",
+                            "Build expertise in emerging financial technologies"
+                        ]
+                    }
+                ]
+            }
+        };
+
+        // Assessment State
+        let currentQuestion = 0;
+        let answers = [];
+        let scores = { tech: 0, business: 0, creative: 0, healthcare: 0, education: 0, finance: 0 };
+
+        // Initialize Assessment
+        function startAssessment() {
+            document.getElementById('welcomePage').classList.add('hidden');
+            document.getElementById('assessmentPage').classList.remove('hidden');
+            currentQuestion = 0;
+            answers = [];
+            scores = { tech: 0, business: 0, creative: 0, healthcare: 0, education: 0, finance: 0 };
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const question = questions[currentQuestion];
+            document.getElementById('questionText').textContent = question.question;
+            document.getElementById('currentQuestionNum').textContent = currentQuestion + 1;
+            document.getElementById('totalQuestions').textContent = questions.length;
+            
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById('progressPercent').textContent = Math.round(progress);
+            document.getElementById('progressFill').style.width = progress + '%';
+
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option-card';
+                optionDiv.textContent = option.text;
+                optionDiv.onclick = () => selectOption(index);
+                
+                if (answers[currentQuestion] === index) {
+                    optionDiv.classList.add('selected');
+                }
+                
+                optionsContainer.appendChild(optionDiv);
+            });
+
+            updateNavigationButtons();
+        }
+
+        function selectOption(optionIndex) {
+            answers[currentQuestion] = optionIndex;
+            
+            // Update visual selection
+            const options = document.querySelectorAll('.option-card');
+            options.forEach((option, index) => {
+                option.classList.toggle('selected', index === optionIndex);
+            });
+
+            updateNavigationButtons();
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = currentQuestion === 0;
+            nextBtn.disabled = answers[currentQuestion] === undefined;
+            
+            if (currentQuestion === questions.length - 1) {
+                nextBtn.textContent = 'Get Results';
+            } else {
+                nextBtn.textContent = 'Next Question';
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            if (answers[currentQuestion] !== undefined) {
+                // Update scores
+                const selectedOption = questions[currentQuestion].options[answers[currentQuestion]];
+                Object.keys(selectedOption.scores).forEach(career => {
+                    scores[career] += selectedOption.scores[career];
+                });
+
+                if (currentQuestion < questions.length - 1) {
+                    currentQuestion++;
+                    loadQuestion();
+                } else {
+                    showResults();
+                }
+            }
+        }
+
+        function showResults() {
+            document.getElementById('assessmentPage').classList.add('hidden');
+            document.getElementById('resultsPage').classList.remove('hidden');
+
+            // Calculate results
+            const maxScore = Math.max(...Object.values(scores));
+            const results = Object.entries(careers).map(([key, career]) => ({
+                key,
+                ...career,
+                match: Math.round((scores[key] / maxScore) * 100)
+            })).sort((a, b) => b.match - a.match);
+
+            // Display results
+            const resultsContainer = document.getElementById('resultsContainer');
+            resultsContainer.innerHTML = '';
+
+            results.forEach(career => {
+                const careerDiv = document.createElement('div');
+                careerDiv.className = 'career-card';
+                careerDiv.innerHTML = `
+                    <div class="career-header">
+                        <h3 class="career-title">${career.title}</h3>
+                        <span class="match-badge">${career.match}% Match</span>
+                    </div>
+                    <p class="career-description">${career.description}</p>
+                    <div class="career-skills">
+                        <strong>Key Skills:</strong>
+                        <div class="skills-list">
+                            ${career.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary roadmap-btn" onclick="showRoadmap('${career.key}')">
+                        View Career Roadmap →
+                    </button>
+                `;
+                resultsContainer.appendChild(careerDiv);
+            });
+        }
+
+        function showRoadmap(careerKey) {
+            const career = careers[careerKey];
+            document.getElementById('resultsPage').classList.add('hidden');
+            document.getElementById('roadmapPage').classList.remove('hidden');
+
+            document.getElementById('roadmapTitle').textContent = career.title + ' Roadmap';
+            document.getElementById('roadmapDescription').textContent = career.description;
+
+            const timelineContainer = document.getElementById('roadmapTimeline');
+            timelineContainer.innerHTML = '';
+
+            career.roadmap.forEach((phase, index) => {
+                const timelineItem = document.createElement('div');
+                timelineItem.className = 'timeline-item';
+                timelineItem.innerHTML = `
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-phase">${phase.phase} (${phase.duration})</div>
+                        <h3 class="timeline-title">${phase.title}</h3>
+                        <ul class="timeline-tasks">
+                            ${phase.tasks.map(task => `<li>${task}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+                timelineContainer.appendChild(timelineItem);
+            });
+        }
+
+        function backToResults() {
+            document.getElementById('roadmapPage').classList.add('hidden');
+            document.getElementById('resultsPage').classList.remove('hidden');
+        }
+
+        function restartAssessment() {
+            document.getElementById('resultsPage').classList.add('hidden');
+            document.getElementById('welcomePage').classList.remove('hidden');
+            currentQuestion = 0;
+            answers = [];
+            scores = { tech: 0, business: 0, creative: 0, healthcare: 0, education: 0, finance: 0 };
+        }
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9854e6b5b70fc919',t:'MTc1ODkxMjE0Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
