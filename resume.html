@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Resume Builder - AI-Powered Resume Creation</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+     
+   <header >
+        <div class="mainLogo" onclick="window.location.href='main.html'">
+            <div class="Hicon" style="margin-left: 20px;"><i class="fa-regular fa-compass logo-icon-fa"></i></div>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+            <h2 >PathFinder</h2>
+        </div>
+<div class="home" onclick="window.location.href='main.html'">Home</div>
+        <div class="navbar">
+            <ul>
+                <li>
+                    <a href="#" id="dropdownToggle">Services Offered ▾</a>
+                    <ul class="dropdown-menu" id="dropdownMenu">
+                        <li><a href="test.html">Career Assessment Test</a></li>
+                        <li><a href="explorer.html">Career Explorer</a></li>
+                        <li><a href="blogs.html">Blogs & Articles</a></li>
+                        <li><a href="inspiration.html">Inspiration Hub</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" id="themesToggle">Themes ▾</a>
+                    <ul class="dropdown-menu" id="themesMenu">
+                        <li><a href="#" data-theme="light"><i class="fas fa-sun"></i> Light Theme</a></li>
+                        <li><a href="#" data-theme="dark"><i class="fas fa-moon"></i> Dark Theme</a></li>
+                        <li><a href="#" data-theme="contrast"><i class="fas fa-adjust"></i> High Contrast</a></li>
+                        <li><a href="#" data-theme="reading"><i class="fas fa-book-open"></i> Blue Filter</a></li>
+                    </ul>
+                </li>
+              
+            </ul>
+        </div>
+
+        <div class="header-actions">
+            <div class="AboutUs">About Us</div>
+            <div class="ContactUs">Contact Us</div>
+
+            <button class="icon-button" id="textSizeToggle" title="Adjust Text Size">
+                <i class="fas fa-text-height"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Welcome Section -->
+            <section id="welcome-section" class="welcome-section">
+                <div class="welcome-content">
+                    <h2>Build Your Dream Resume in 3 Easy Steps</h2>
+                    <p>Our intelligent resume builder provides step-by-step guidance, professional templates, and real-time optimization tips to help you land your dream job.</p>
+                    
+                    <div class="steps-preview">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <h3>Choose Template</h3>
+                            <p>Select from our ATS-friendly professional templates</p>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <h3>Add Your Info</h3>
+                            <p>Fill in your details with AI-powered suggestions</p>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <h3>Download & Apply</h3>
+                            <p>Get your professional PDF resume instantly</p>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-large" onclick="startBuilder()">
+                        🚀 Start Building Now
+                    </button>
+                </div>
+
+                <!-- Template Showcase -->
+                <div class="template-showcase">
+                    <h3>Choose Your Perfect Template</h3>
+                    <div class="template-grid">
+                        <div class="template-card" data-template="modern" onclick="selectTemplate('modern')">
+                            <div class="template-preview modern-preview">
+                                <div class="preview-header"></div>
+                                <div class="preview-content">
+                                    <div class="preview-line long"></div>
+                                    <div class="preview-line medium"></div>
+                                    <div class="preview-line short"></div>
+                                </div>
+                            </div>
+                            <h4>Modern Professional</h4>
+                            <p>Clean design with accent colors</p>
+                        </div>
+                        
+                        <div class="template-card" data-template="classic" onclick="selectTemplate('classic')">
+                            <div class="template-preview classic-preview">
+                                <div class="preview-sidebar"></div>
+                                <div class="preview-main">
+                                    <div class="preview-line long"></div>
+                                    <div class="preview-line medium"></div>
+                                    <div class="preview-line short"></div>
+                                </div>
+                            </div>
+                            <h4>Classic Executive</h4>
+                            <p>Traditional layout for corporate roles</p>
+                        </div>
+                        
+                        <div class="template-card" data-template="creative" onclick="selectTemplate('creative')">
+                            <div class="template-preview creative-preview">
+                                <div class="preview-accent"></div>
+                                <div class="preview-content">
+                                    <div class="preview-line long"></div>
+                                    <div class="preview-line medium"></div>
+                                    <div class="preview-line short"></div>
+                                </div>
+                            </div>
+                            <h4>Creative Designer</h4>
+                            <p>Stylish layout for creative fields</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Builder Section -->
+            <section id="builder-section" class="builder-section hidden">
+                <div class="builder-container">
+                    <!-- Progress Bar -->
+                    <div class="progress-section">
+                        <div class="progress-info">
+                            <h3>Building Your Resume</h3>
+                            <span class="progress-text">Step <span id="current-step">1</span> of 6 - <span id="completion-percentage">0</span>% Complete</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                    </div>
+
+                    <!-- Builder Layout -->
+                    <div class="builder-layout">
+                        <!-- Sidebar Navigation -->
+                        <div class="builder-sidebar">
+                            <div class="template-info">
+                                <h4>Selected Template</h4>
+                                <div class="selected-template" id="selected-template">
+                                    <div class="template-thumb" id="template-thumb"></div>
+                                    <span id="template-name">Modern Professional</span>
+                                </div>
+                                <button class="btn btn-small btn-secondary" onclick="changeTemplate()">Change Template</button>
+                            </div>
+
+                            <div class="section-nav">
+                                <div class="nav-item active" data-section="personal" onclick="switchSection('personal')">
+                                    <span class="nav-icon">👤</span>
+                                    <span class="nav-text">Personal Info</span>
+                                    <span class="nav-status" id="personal-status">○</span>
+                                </div>
+                                <div class="nav-item" data-section="summary" onclick="switchSection('summary')">
+                                    <span class="nav-icon">📝</span>
+                                    <span class="nav-text">Summary</span>
+                                    <span class="nav-status" id="summary-status">○</span>
+                                </div>
+                                <div class="nav-item" data-section="experience" onclick="switchSection('experience')">
+                                    <span class="nav-icon">💼</span>
+                                    <span class="nav-text">Experience</span>
+                                    <span class="nav-status" id="experience-status">○</span>
+                                </div>
+                                <div class="nav-item" data-section="education" onclick="switchSection('education')">
+                                    <span class="nav-icon">🎓</span>
+                                    <span class="nav-text">Education</span>
+                                    <span class="nav-status" id="education-status">○</span>
+                                </div>
+                                <div class="nav-item" data-section="skills" onclick="switchSection('skills')">
+                                    <span class="nav-icon">⚡</span>
+                                    <span class="nav-text">Skills</span>
+                                    <span class="nav-status" id="skills-status">○</span>
+                                </div>
+                                <div class="nav-item" data-section="additional" onclick="switchSection('additional')">
+                                    <span class="nav-icon">➕</span>
+                                    <span class="nav-text">Additional</span>
+                                    <span class="nav-status" id="additional-status">○</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Content -->
+                        <div class="builder-main">
+                            <div class="form-container">
+                                <!-- Personal Information Section -->
+                                <div id="personal-section" class="form-section active">
+                                    <div class="section-header">
+                                        <h2>Personal Information</h2>
+                                        <p>Let's start with your basic contact information and professional photo</p>
+                                    </div>
+                                    
+                                    <div class="guidance-card">
+                                        <div class="guidance-icon">💡</div>
+                                        <div class="guidance-content">
+                                            <h4>Pro Tips for Personal Info</h4>
+                                            <ul>
+                                                <li>Use a professional email address</li>
+                                                <li>Include a professional headshot (optional but recommended)</li>
+                                                <li>Make sure your phone number is current</li>
+                                                <li>Add your LinkedIn profile for networking</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="firstName">First Name *</label>
+                                            <input type="text" id="firstName" placeholder="John" required>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="lastName">Last Name *</label>
+                                            <input type="text" id="lastName" placeholder="Doe" required>
+                                        </div>
+                                        
+                                        <div class="form-group full-width">
+                                            <label for="jobTitle">Professional Title *</label>
+                                            <input type="text" id="jobTitle" placeholder="Software Developer" required>
+                                            <div class="field-tip">This should match the job you're applying for</div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="email">Email Address *</label>
+                                            <input type="email" id="email" placeholder="john.doe@email.com" required>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="phone">Phone Number *</label>
+                                            <input type="tel" id="phone" placeholder="+1 (555) 123-4567" required>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="location">Location</label>
+                                            <input type="text" id="location" placeholder="New York, NY">
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="linkedin">LinkedIn Profile</label>
+                                            <input type="url" id="linkedin" placeholder="linkedin.com/in/johndoe">
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="website">Website/Portfolio</label>
+                                            <input type="url" id="website" placeholder="www.johndoe.com">
+                                        </div>
+                                        
+                                        <div class="form-group full-width">
+                                            <label for="photo">Professional Photo</label>
+                                            <div class="photo-upload-area" id="photo-upload-area">
+                                                <input type="file" id="photo" accept="image/*" onchange="handlePhotoUpload(event)">
+                                                <div class="upload-placeholder">
+                                                    <div class="upload-icon">📷</div>
+                                                    <p>Click to upload or drag & drop</p>
+                                                    <span>JPG, PNG up to 5MB</span>
+                                                </div>
+                                            </div>
+                                            <div id="photo-preview" class="photo-preview hidden">
+                                                <img id="photo-img" src="" alt="Profile photo">
+                                                <button type="button" class="remove-photo" onclick="removePhoto()">Remove</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Summary Section -->
+                                <div id="summary-section" class="form-section">
+                                    <div class="section-header">
+                                        <h2>Professional Summary</h2>
+                                        <p>Write a compelling summary that highlights your key strengths and career objectives</p>
+                                    </div>
+                                    
+                                    <div class="guidance-card">
+                                        <div class="guidance-icon">✍️</div>
+                                        <div class="guidance-content">
+                                            <h4>Writing an Effective Summary</h4>
+                                            <ul>
+                                                <li>Keep it 3-4 sentences (150-300 characters)</li>
+                                                <li>Include your years of experience</li>
+                                                <li>Mention key skills relevant to the job</li>
+                                                <li>Highlight your biggest achievement</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="summary">Professional Summary *</label>
+                                        <textarea id="summary" rows="6" placeholder="Experienced software developer with 5+ years of expertise in full-stack development. Proven track record of delivering scalable web applications and leading cross-functional teams. Passionate about creating innovative solutions that drive business growth."></textarea>
+                                        <div class="character-count">
+                                            <span id="summary-count">0</span>/300 characters
+                                        </div>
+                                    </div>
+
+                                    <div class="ai-suggestions">
+                                        <h4>💡 AI-Powered Suggestions</h4>
+                                        <div class="suggestion-list" id="summary-suggestions">
+                                            <div class="suggestion-item" onclick="applySuggestion('summary', 'Results-driven professional with proven expertise in project management and team leadership, delivering exceptional outcomes in fast-paced environments.')">
+                                                "Results-driven professional with proven expertise..."
+                                            </div>
+                                            <div class="suggestion-item" onclick="applySuggestion('summary', 'Innovative specialist with strong analytical skills and a passion for solving complex challenges through creative problem-solving approaches.')">
+                                                "Innovative specialist with strong analytical skills..."
+                                            </div>
+                                            <div class="suggestion-item" onclick="applySuggestion('summary', 'Dedicated professional committed to excellence, with extensive experience in stakeholder management and process optimization.')">
+                                                "Dedicated professional committed to excellence..."
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Experience Section -->
+                                <div id="experience-section" class="form-section">
+                                    <div class="section-header">
+                                        <h2>Work Experience</h2>
+                                        <p>Add your work history, starting with your most recent position</p>
+                                    </div>
+                                    
+                                    <div class="guidance-card">
+                                        <div class="guidance-icon">💼</div>
+                                        <div class="guidance-content">
+                                            <h4>Experience Best Practices</h4>
+                                            <ul>
+                                                <li>Start with action verbs (Developed, Managed, Led)</li>
+                                                <li>Include quantifiable achievements (increased sales by 25%)</li>
+                                                <li>Focus on results, not just responsibilities</li>
+                                                <li>Tailor descriptions to match job requirements</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div id="experience-list">
+                                        <!-- Experience items will be added here -->
+                                    </div>
+                                    
+                                    <button class="btn btn-secondary" onclick="addExperience()">
+                                        + Add Work Experience
+                                    </button>
+                                </div>
+
+                                <!-- Education Section -->
+                                <div id="education-section" class="form-section">
+                                    <div class="section-header">
+                                        <h2>Education</h2>
+                                        <p>Add your educational background and academic achievements</p>
+                                    </div>
+                                    
+                                    <div class="guidance-card">
+                                        <div class="guidance-icon">🎓</div>
+                                        <div class="guidance-content">
+                                            <h4>Education Guidelines</h4>
+                                            <ul>
+                                                <li>List most recent education first</li>
+                                                <li>Include GPA if 3.5 or higher</li>
+                                                <li>Add relevant coursework for entry-level positions</li>
+                                                <li>Include honors, awards, or distinctions</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div id="education-list">
+                                        <!-- Education items will be added here -->
+                                    </div>
+                                    
+                                    <button class="btn btn-secondary" onclick="addEducation()">
+                                        + Add Education
+                                    </button>
+                                </div>
+
+                                <!-- Skills Section -->
+                                <div id="skills-section" class="form-section">
+                                    <div class="section-header">
+                                        <h2>Skills & Competencies</h2>
+                                        <p>Highlight your technical and soft skills that match the job requirements</p>
+                                    </div>
+                                    
+                                    <div class="guidance-card">
+                                        <div class="guidance-icon">⚡</div>
+                                        <div class="guidance-content">
+                                            <h4>Skills Strategy</h4>
+                                            <ul>
+                                                <li>Include both technical and soft skills</li>
+                                                <li>Match skills to job descriptions</li>
+                                                <li>Be honest about your proficiency level</li>
+                                                <li>Include industry-specific tools and software</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="skills-container">
+                                        <div class="form-group">
+                                            <label for="skill-input">Add Skills</label>
+                                            <div class="skill-input-container">
+                                                <input type="text" id="skill-input" placeholder="Type a skill and press Enter">
+                                                <button class="btn btn-primary" onclick="addSkill()">Add</button>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="skills-display" id="skills-display">
+                                            <!-- Skills will be displayed here -->
+                                        </div>
+                                        
+                                        <div class="popular-skills">
+                                            <h4>Popular Skills by Category</h4>
+                                            <div class="skill-categories">
+                                                <div class="skill-category">
+                                                    <h5>Technical</h5>
+                                                    <div class="skill-suggestions">
+                                                        <span class="skill-suggestion" onclick="addSkillFromSuggestion('JavaScript')">JavaScript</span>
+                                                        <span class="skill-suggestion" onclick="addSkillFromSuggestion('Python')">Python</span>
+                                                        <span class="skill-suggestion" onclick="addSkillFromSuggestion('React')">React</span>
+                                                        <span class="skill-suggestion" onclick="addSkillFromSuggestion('SQL')">SQL</span>
+                                                    </div>
+                                                </div>
+                                                <div class="skill-category">
+                                                    <h5>Soft Skills</h5>
+                                                    <div class="skill-suggestions">
+                                                        <span class="skill-suggestion" onclick="addSkillFromSuggestion('Leadership')">Leadership</span>
+                                                        <span class="skill-suggestion" onclick="addSkillFromSuggestion('Communication')">Communication</span>
+                                                        <span class="skill-suggestion" onclick="addSkillFromSuggestion('Problem Solving')">Problem Solving</span>
+                                                        <span class="skill-suggestion" onclick="addSkillFromSuggestion('Team Collaboration')">Team Collaboration</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Additional Section -->
+                                <div id="additional-section" class="form-section">
+                                    <div class="section-header">
+                                        <h2>Additional Information</h2>
+                                        <p>Add certifications, languages, projects, and other relevant information</p>
+                                    </div>
+                                    
+                                    <div class="guidance-card">
+                                        <div class="guidance-icon">🏆</div>
+                                        <div class="guidance-content">
+                                            <h4>Additional Sections Tips</h4>
+                                            <ul>
+                                                <li>Only include relevant certifications</li>
+                                                <li>List languages with proficiency levels</li>
+                                                <li>Showcase projects that demonstrate skills</li>
+                                                <li>Include volunteer work if space permits</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="additional-tabs">
+                                        <button class="tab-btn active" onclick="switchAdditionalTab('certifications')">Certifications</button>
+                                        <button class="tab-btn" onclick="switchAdditionalTab('languages')">Languages</button>
+                                        <button class="tab-btn" onclick="switchAdditionalTab('projects')">Projects</button>
+                                    </div>
+                                    
+                                    <div id="certifications-tab" class="additional-tab active">
+                                        <div id="certifications-list"></div>
+                                        <button class="btn btn-secondary" onclick="addCertification()">+ Add Certification</button>
+                                    </div>
+                                    
+                                    <div id="languages-tab" class="additional-tab">
+                                        <div id="languages-list"></div>
+                                        <button class="btn btn-secondary" onclick="addLanguage()">+ Add Language</button>
+                                    </div>
+                                    
+                                    <div id="projects-tab" class="additional-tab">
+                                        <div id="projects-list"></div>
+                                        <button class="btn btn-secondary" onclick="addProject()">+ Add Project</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Resume Preview -->
+                        <div class="builder-preview">
+                            <div class="preview-header">
+                                <h3>Live Preview</h3>
+                                <div class="preview-actions">
+                                    <button class="btn btn-primary btn-small" onclick="downloadPDF()">
+                                        📄 Download PDF
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="resume-preview" id="resume-preview">
+                                <!-- Resume preview will be generated here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="builder-navigation">
+                        <button class="btn btn-secondary" id="prev-btn" onclick="previousSection()" disabled>
+                            ← Previous Step
+                        </button>
+                        <button class="btn btn-primary" id="next-btn" onclick="nextSection()">
+                            Next Step →
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Template Selection Modal -->
+            <div id="template-modal" class="modal hidden">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Choose Your Template</h3>
+                        <button class="close-modal" onclick="closeTemplateModal()">×</button>
+                    </div>
+                    <div class="template-grid">
+                        <div class="template-card" data-template="modern" onclick="selectTemplateFromModal('modern')">
+                            <div class="template-preview modern-preview">
+                                <div class="preview-header"></div>
+                                <div class="preview-content">
+                                    <div class="preview-line long"></div>
+                                    <div class="preview-line medium"></div>
+                                    <div class="preview-line short"></div>
+                                </div>
+                            </div>
+                            <h4>Modern Professional</h4>
+                            <p>Clean design with accent colors</p>
+                        </div>
+                        
+                        <div class="template-card" data-template="classic" onclick="selectTemplateFromModal('classic')">
+                            <div class="template-preview classic-preview">
+                                <div class="preview-sidebar"></div>
+                                <div class="preview-main">
+                                    <div class="preview-line long"></div>
+                                    <div class="preview-line medium"></div>
+                                    <div class="preview-line short"></div>
+                                </div>
+                            </div>
+                            <h4>Classic Executive</h4>
+                            <p>Traditional layout for corporate roles</p>
+                        </div>
+                        
+                        <div class="template-card" data-template="creative" onclick="selectTemplateFromModal('creative')">
+                            <div class="template-preview creative-preview">
+                                <div class="preview-accent"></div>
+                                <div class="preview-content">
+                                    <div class="preview-line long"></div>
+                                    <div class="preview-line medium"></div>
+                                    <div class="preview-line short"></div>
+                                </div>
+                            </div>
+                            <h4>Creative Designer</h4>
+                            <p>Stylish layout for creative fields</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="Abovefooter">
+  <div class="footer-about">
+    <h3>About Us</h3>
+    <p>
+      PathFinder is your trusted career guide, helping students and professionals
+      discover opportunities, assess skills, and get inspired for the future.
+    </p>
+  </div>
+
+  <div class="footer-links">
+    <h3>Quick Links</h3>
+    <ul>
+      <li><a href="test.html">Career Assessment</a></li>
+      <li><a href="explorer.html">Career Explorer</a></li>
+      <li><a href="blogs.html">Blogs & Articles</a></li>
+      <li><a href="inspiration.html">Inspiration Hub</a></li>
+    </ul>
+  </div>
+
+  <div class="footer-contact">
+    <h3>Contact</h3>
+    <p>Email: support@pathfinder.com</p>
+    <p>Phone: +92 300 1234567</p>
+    <div class="socials">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+  </div>
+</div>
+<footer>
+    <p> &copy; 2025 PathFinder. All rights reserved.</p>
+</footer>
+    </main>
+
+    <script src="script.js"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'989cd270a0e59083',t:'MTc1OTY2NjI5MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
